@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Skills Academy | التسجيل</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#080808;color:#fff}
+header{padding:18px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #9b6b12}
+.logo{font-size:25px;font-weight:900;color:#d9a72a}.logo span{display:block;font-size:12px;letter-spacing:3px;color:#fff}
+nav a{color:#fff;text-decoration:none;margin:0 12px}.hero{padding:55px 7%;text-align:center;background:linear-gradient(#0008,#000b),url('') center/cover}
+h1{font-size:clamp(38px,7vw,72px);margin:10px 0;color:#d9a72a}.hero p{font-size:20px}.btn{display:inline-block;background:#d9a72a;color:#111;padding:15px 30px;border-radius:9px;text-decoration:none;font-weight:bold}
+.wrap{max-width:950px;margin:35px auto;padding:0 18px}.card{background:#111;border:1px solid #8f6518;border-radius:18px;padding:28px;box-shadow:0 10px 35px #000}
+h2{text-align:center;color:#d9a72a;margin-top:0}label{display:block;margin:14px 0 7px;font-weight:bold}
+input,select{width:100%;padding:14px;border-radius:9px;border:1px solid #777;background:#fff;color:#111;font-size:16px}
+button{width:100%;padding:15px;border:0;border-radius:9px;background:#d9a72a;color:#111;font-size:18px;font-weight:bold;margin-top:20px;cursor:pointer}
+.note{text-align:center;color:#bbb;font-size:14px}.success{display:none;background:#123b20;border:1px solid #2f9b52;padding:15px;border-radius:9px;margin-top:15px;text-align:center}
+footer{text-align:center;border-top:1px solid #333;padding:25px;margin-top:40px;color:#bbb}footer strong{color:#d9a72a}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">PS<span>PRESTIGE SKILLS ACADEMY</span></div>
+  <nav><a href="#register">التسجيل</a><a href="#contact">تواصل معنا</a></nav>
+</header>
+
+<section class="hero">
+  <h1>PRESTIGE SKILLS ACADEMY</h1>
+  <p>أكاديمية متخصصة في تعليم الحلاقة وتطوير مهاراتك</p>
+  <a class="btn" href="#register">سجل الآن في دورتك</a>
+</section>
+
+<div class="wrap" id="register">
+<div class="card">
+<h2>استمارة التسجيل في الدورة</h2>
+<form id="registrationForm">
+<label>الاسم واللقب</label>
+<input id="name" required placeholder="أدخل الاسم واللقب">
+
+<label>رقم الهاتف</label>
+<input id="phone" value="0775164644" required inputmode="tel">
+
+<label>العمر</label>
+<input id="age" type="number" min="10" max="100" required placeholder="العمر">
+
+<label>الولاية</label>
+<input id="wilaya" required placeholder="الولاية">
+
+<label>الدورة المطلوبة</label>
+<select id="course" required>
+<option value="">اختر الدورة</option>
+<option>تكوين الحلاقة للمبتدئين</option>
+<option>تطوير مهارات الحلاقة</option>
+<option>تقنيات الفيد والقصات الحديثة</option>
+<option>حلاقة اللحية والتصفيف</option>
+</select>
+
+<label>المستوى</label>
+<select id="level" required>
+<option value="">اختر المستوى</option>
+<option>مبتدئ</option><option>متقدم</option>
+</select>
+
+<button type="submit">إرسال التسجيل</button>
+<div class="success" id="success">تم إرسال طلب التسجيل بنجاح ✅ سيتم التواصل معك على رقم الهاتف.</div>
+<p class="note">الهاتف: 0775164644</p>
+</form>
+</div>
+</div>
+
+<footer id="contact">
+<strong>PRESTIGE SKILLS ACADEMY</strong><br>
+للتسجيل والاستفسار: 0775164644
+</footer>
+
+<script>
+document.getElementById('registrationForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const data={
+  name:document.getElementById('name').value,
+  phone:document.getElementById('phone').value,
+  age:document.getElementById('age').value,
+  wilaya:document.getElementById('wilaya').value,
+  course:document.getElementById('course').value,
+  level:document.getElementById('level').value,
+  date:new Date().toLocaleString('ar-DZ')
+ };
+ const registrations=JSON.parse(localStorage.getItem('prestige_registrations')||'[]');
+ registrations.push(data);
+ localStorage.setItem('prestige_registrations',JSON.stringify(registrations));
+ document.getElementById('success').style.display='block';
+ this.reset();
+ document.getElementById('phone').value='0775164644';
+});
+</script>
+</body>
+</html>
